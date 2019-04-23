@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.msg.model.ReceiveMessage" table="t_receivemsg">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="content" type="text"/>
+		<property name="senderName"/>
+		<property name="receiveTime"/>
+		<property name="hasRead"/>
+		<property name="title"/>
+		<many-to-one name="receiver"></many-to-one>
+	</class>
+</hibernate-mapping>

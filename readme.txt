@@ -1,0 +1,1 @@
+An example about message sending using struts2，hibernate and Spring

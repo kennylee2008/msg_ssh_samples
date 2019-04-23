@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action,do,struts2"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="login" type="redirect">/index.jsp</result>
+			<result name="exception">/message/exception.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+	<package name="system" namespace="/system" extends="default">
+		<action name="login" class="loginAction">
+			<!-- 重定向到另外一个Action -->
+			<result name="back_index" type="redirectAction">
+				<param name="namespace">/message</param>
+				<param name="actionName">msg!index</param>
+			</result>
+			<exception-mapping result="input" exception="java.lang.Exception"/>
+			<result name="input">/index.jsp</result>
+		</action>
+		<action name="init" class="initAction">
+			<result name="init_success">
+				/init_success.jsp
+			</result>
+		</action>
+	</package>
+	<package name="message" namespace="/message" extends="default">
+		<action name="msg" class="messageAction">
+			<result name="back_index">/message/back_index.jsp</result>
+			<result name="send_input">/message/send_input.jsp</result>
+			<result name="send_success">/message/send_success.jsp</result>
+			<result name="inbox">/message/inbox.jsp</result>
+			<result name="outbox">/message/outbox.jsp</result>
+			<result name="laji">/message/laji.jsp</result>
+			<result name="detail">/message/detail.jsp</result>
+			<result name="del_success">/message/del_success.jsp</result>
+		</action>
+	</package>
+</struts>
